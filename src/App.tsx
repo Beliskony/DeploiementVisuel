@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -7,18 +7,37 @@ function App() {
   const [afficherBg, setAfficherBg] = useState(false)
   const [afficherContent, setAfficherContent] = useState(false)
 
-  const imageUrl = '/creation/Affiche1.jpg' // mets bien l’image ici
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const imageUrl = '/creation/Affiche1.jpg'
+  const audioUrl = '/creation/song.mp3'
 
   useEffect(() => {
     const img = new Image()
     img.src = imageUrl
     img.onload = () => {
       setImageChargee(true)
-      // petit stagger : d'abord le bg, puis le contenu
       setTimeout(() => setAfficherBg(true), 100)
       setTimeout(() => setAfficherContent(true), 380)
     }
     img.onerror = () => setImageErreur(true)
+
+    // écoute le premier clic pour activer le son
+    const handleFirstClick = () => {
+      if (audioRef.current) {
+        audioRef.current.muted = false
+        audioRef.current.play().catch(() => {
+          console.warn('Impossible de lancer l’audio')
+        })
+      }
+      document.removeEventListener('click', handleFirstClick)
+    }
+
+    document.addEventListener('click', handleFirstClick)
+
+    return () => {
+      document.removeEventListener('click', handleFirstClick)
+    }
   }, [])
 
   if (imageErreur) {
@@ -45,29 +64,22 @@ function App() {
       {/* Overlay doux */}
       <div className="absolute inset-0 bg-black/10 backdrop-blur-lg" />
 
-      {/* Contenu : apparition + petite animation continue */}
+      {/* Contenu */}
       <div
         className={`relative z-10 flex flex-col items-center justify-center h-full gap-y-2.5 p-3 md:p-1.5 lg:p-0
           transition-all duration-700 ease-in-out
           ${afficherContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
       >
-        {/* image principale : entrée + 'breath' looping */}
         <img
           className={`h-[600px] w-[500px] max-sm:h-[500px] max-sm:w-[400px] object-fill transition-transform duration-700 ease-in-out
             ${afficherContent ? 'scale-100' : 'scale-95'} ${afficherContent ? 'breath' : ''}`}
           src={imageUrl}
           alt="Affiche anniversaire"
         />
-
-        {/* titre : entrée décalée */}
-        <h1
-          className={`text-white font-cy max-sm:text-5xl md:text-3xl py-3.5 lg:text-5xl font-bold drop-shadow-xl text-center
-            ${afficherContent ? 'animate-fade-in' : ''}`}
-          style={{ transitionDelay: afficherContent ? '420ms' : '0ms' }}
-        >
-          Anzoumana Gbane
-        </h1>
       </div>
+
+      {/* Audio caché, autoplay en mute 
+      <audio ref={audioRef} src={audioUrl} autoPlay loop muted hidden />*/}
     </div>
   )
 }
