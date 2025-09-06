@@ -53,7 +53,7 @@ function App() {
       >
         {/* image principale : entrée + 'breath' looping */}
         <img
-          className={`h-[600px] w-[500px] object-cover transition-transform duration-700 ease-in-out
+          className={`h-[600px] w-[500px] object-fill transition-transform duration-700 ease-in-out
             ${afficherContent ? 'scale-100' : 'scale-95'} ${afficherContent ? 'breath' : ''}`}
           src={imageUrl}
           alt="Affiche anniversaire"
