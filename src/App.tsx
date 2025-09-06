@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
@@ -7,10 +7,10 @@ function App() {
   const [afficherBg, setAfficherBg] = useState(false)
   const [afficherContent, setAfficherContent] = useState(false)
 
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  //const audioRef = useRef<HTMLAudioElement | null>(null)
 
   const imageUrl = '/creation/Affiche1.jpg'
-  const audioUrl = '/creation/song.mp3'
+  //const audioUrl = '/creation/song.mp3'
 
   useEffect(() => {
     const img = new Image()
@@ -22,7 +22,7 @@ function App() {
     }
     img.onerror = () => setImageErreur(true)
 
-    // écoute le premier clic pour activer le son
+    {/* écoute le premier clic pour activer le son
     const handleFirstClick = () => {
       if (audioRef.current) {
         audioRef.current.muted = false
@@ -37,7 +37,7 @@ function App() {
 
     return () => {
       document.removeEventListener('click', handleFirstClick)
-    }
+    } */}
   }, [])
 
   if (imageErreur) {
