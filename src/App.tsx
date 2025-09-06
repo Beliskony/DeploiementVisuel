@@ -47,7 +47,7 @@ function App() {
 
       {/* Contenu : apparition + petite animation continue */}
       <div
-        className={`relative z-10 flex flex-col items-center justify-center h-full gap-y-2.5 p-3 md:p-1.5 lg:p-0
+        className={`relative z-10 flex flex-col items-center justify-center h-full gap-y-5 p-3 md:p-1.5 lg:p-0
           transition-all duration-700 ease-in-out
           ${afficherContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
       >
@@ -61,7 +61,7 @@ function App() {
 
         {/* titre : entrée décalée */}
         <h1
-          className={`text-white font-cy max-sm:text-5xl mt-2.5 md:text-3xl lg:text-5xl font-bold drop-shadow-xl text-center
+          className={`text-white font-cy max-sm:text-5xl md:text-3xl py-3.5 lg:text-5xl font-bold drop-shadow-xl text-center
             ${afficherContent ? 'animate-fade-in' : ''}`}
           style={{ transitionDelay: afficherContent ? '420ms' : '0ms' }}
         >
