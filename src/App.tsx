@@ -61,7 +61,7 @@ function App() {
 
         {/* titre : entrée décalée */}
         <h1
-          className={`text-white font-cy max-sm:text-5xl md:text-3xl lg:text-5xl font-bold drop-shadow-xl text-center
+          className={`text-white font-cy max-sm:text-5xl mt-2.5 md:text-3xl lg:text-5xl font-bold drop-shadow-xl text-center
             ${afficherContent ? 'animate-fade-in' : ''}`}
           style={{ transitionDelay: afficherContent ? '420ms' : '0ms' }}
         >
