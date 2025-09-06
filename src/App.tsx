@@ -53,7 +53,7 @@ function App() {
       >
         {/* image principale : entrée + 'breath' looping */}
         <img
-          className={`h-[600px] w-[500px] object-fill transition-transform duration-700 ease-in-out
+          className={`h-[600px] w-[500px] max-sm:h-[500px] max-sm:w-[400px] object-fill transition-transform duration-700 ease-in-out
             ${afficherContent ? 'scale-100' : 'scale-95'} ${afficherContent ? 'breath' : ''}`}
           src={imageUrl}
           alt="Affiche anniversaire"
@@ -61,11 +61,11 @@ function App() {
 
         {/* titre : entrée décalée */}
         <h1
-          className={`text-white font-cy text-3xl md:text-3xl lg:text-5xl font-bold drop-shadow-xl text-center
+          className={`text-white font-cy max-sm:text-5xl md:text-3xl lg:text-5xl font-bold drop-shadow-xl text-center
             ${afficherContent ? 'animate-fade-in' : ''}`}
           style={{ transitionDelay: afficherContent ? '420ms' : '0ms' }}
         >
-          Joyeux Anniversaire Mr.Gbane
+          Anzoumana Gbane
         </h1>
       </div>
     </div>
